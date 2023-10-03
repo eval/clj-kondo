@@ -197,25 +197,8 @@
                            :clj_kondo])))
 
 (defn config-dir
-  ([] (config-dir
-       (io/file
-        (System/getProperty "user.dir"))))
-  ([start]
-   (let [start (io/file start)
-         ;; NOTE: .getParentFile doesn't work on relative files
-         start (.getAbsoluteFile start)
-         start (if (.isFile start)
-                 (.getParentFile start)
-                 start)]
-     (when start
-       (loop [dir start]
-         (let [cfg-dir (io/file dir ".clj-kondo")]
-           (if (.exists cfg-dir)
-             (if (.isDirectory cfg-dir)
-               cfg-dir
-               (throw (Exception. (str cfg-dir " must be a directory"))))
-             (when-let [parent (.getParentFile dir)]
-               (recur parent)))))))))
+  ([] (config-dir (fs/cwd)))
+  ([start] (fs/file (fs/find-up ".clj-kondo"))))
 
 ;;;; jar processing
 

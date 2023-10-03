@@ -4,7 +4,8 @@
         cheshire/cheshire {:mvn/version "5.11.0"}
         nrepl/bencode {:mvn/version "1.1.0"}
         org.babashka/sci {:mvn/version "0.7.38"}
-        babashka/fs {:mvn/version "0.2.16"}
+        #_#_babashka/fs {:mvn/version "0.2.16"}
+        io.github.eval/fs {:git/sha "a57a20d5f0c70e5a2b564fdee0536e0eca15aec1"}
         org.ow2.asm/asm {:mvn/version "9.4"}
         com.github.javaparser/javaparser-core {:mvn/version "3.25.3"}}
  :aliases {:clj-kondo/dev
